@@ -1,45 +1,26 @@
-function handleDrop(e) {
-    if (e.stopPropagation) {
-        e.stopPropagation();
-    }
-    if (dragSrcEl != this) {
-        dragSrcEl.innerHTML = this.innerHTML;
-        this.innerHTML = e.dataTransfer.getData('text/html');
-    }
-    return false;
+let characterNumber = 1;
+codeCharacter();
+
+function codeCharacter() {
+    characterNumber += 1; 
+    const url = `https://swapi.dev/api/people/${characterNumber}/`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => displayCharacterData(data))
+        .catch(error => console.error(error));
 }
 
-function handleDragEnd(e) {
-    this.style.opacity = '1';
-    [].forEach.call(items, function (item) {
-        item.classList.remove('over');
-    });
+function displayCharacterData(data) {
+    document.getElementById('character').innerHTML = `
+        <h2>${data.name}</h2>
+        <p>Height: ${data.height}</p>
+        <p>Mass: ${data.mass}</p>
+        <p>Hair Color: ${data.hair_color}</p>
+        <p>Skin Color: ${data.skin_color}</p>
+        <p>Eye Color: ${data.eye_color}</p>
+        <p>Birth Year: ${data.birth_year}</p>
+        <p>Gender: ${data.gender}</p>
+    `;
 }
 
-function addtask() {
-    var taskValue = document.getElementById('todo-input').value;
-    var dueDateValue = document.getElementById('due-date-input').value;
-    var ul = document.getElementById('todo-list');
-    var li = document.createElement('li');
-    li.innerHTML = `<span class="task">${taskValue}</span> <span class="due-date">${dueDateValue}</span> <span class="checkmark">&#10003;</span>`;
-    li.className = 'todo-item';
-    li.addEventListener('click', function() {
-        this.classList.toggle('done');
-    });
-    ul.appendChild(li);
-    document.getElementById('todo-input').value = '';
-    document.getElementById('due-date-input').value = '';
-}
-
-document.getElementById('add-btn').addEventListener('click', addtask);
-    var taskValue = document.getElementById('todo-input').value;
-    var dueDateValue = document.getElementById('due-date-input').value;
-    var ul = document.getElementById('todo-list');
-    var li = document.createElement('li');
-    li.innerHTML = `<span class="task">${taskValue}</span> <span class="due-date">${dueDateValue}</span> <span class="checkmark">&#10003;</span>`;
-    li.className = 'todo-item';
-    li.draggable = true;
-    addEventListenersToTask(li);
-    ul.appendChild(li);
-    document.getElementById('todo-input').value = '';
-    document.getElementById('due-date-input').value = '';
+document.getElementById('next').addEventListener('click', codeCharacter);
