@@ -1,0 +1,35 @@
+# Star Wars API Character Viewer
+
+This project is a simple web application that fetches and displays data from the Star Wars API (SWAPI).
+
+## Features
+
+- Displays data for a Star Wars character including name, height, mass, hair color, skin color, eye color, birth year, and gender.
+- Includes a "Next Character" button to fetch and display data for the next character.
+
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+- Star Wars API (SWAPI)
+
+## How to Use
+
+1. Clone this repository.
+2. Open `index.html` in your web browser.
+3. Click the "Next Character" button to display data for the next character.
+
+## Project Structure
+
+- `index.html`: The main HTML file. Includes a section for displaying character data and a "Next Character" button.
+- `styles.css`: Contains all the styles for the project.
+- `script.js`: Contains the JavaScript code that fetches data from the SWAPI and updates the HTML with the fetched data.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
